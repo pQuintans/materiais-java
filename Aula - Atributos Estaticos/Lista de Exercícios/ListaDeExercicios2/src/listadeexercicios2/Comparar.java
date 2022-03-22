@@ -10,6 +10,9 @@ package listadeexercicios2;
  * @author aluno
  */
 public class Comparar {
+    
+    private static int parcial;
+    
     public static int maior(int a, int b) {
         if(a>b){
             return a;
@@ -19,18 +22,18 @@ public class Comparar {
     }
     
     public static int maior(int a, int b, int c) {
-        int maiorParcial = maior(a,b);
-        return maior(maiorParcial, c);
+        parcial = maior(a,b);
+        return maior(parcial, c);
     }
     
     public static int maior(int a, int b, int c, int d) {
-        int maiorParcial = maior(a,b,c);
-        return maior(maiorParcial, d);
+        parcial = maior(a,b,c);
+        return maior(parcial, d);
     }
     
     public static int maior(int a, int b, int c, int d, int e) {
-        int maiorParcial = maior(a,b,c,d);
-        return maior(maiorParcial, e);
+        parcial = maior(a,b,c,d);
+        return maior(parcial, e);
     }    
     
     public static int menor(int a, int b) {
@@ -42,17 +45,17 @@ public class Comparar {
     }
     
     public static int menor(int a, int b, int c) {
-        int menorParcial = menor(a,b);
-        return menor(menorParcial, c);
+        parcial = menor(a,b);
+        return menor(parcial, c);
     }
     
     public static int menor(int a, int b, int c, int d) {
-        int menorParcial = menor(a,b,c);
-        return menor(menorParcial, d);
+        parcial = menor(a,b,c);
+        return menor(parcial, d);
     }
     
     public static int menor(int a, int b, int c, int d, int e) {
-        int menorParcial = menor(a,b,c,d);
-        return menor(menorParcial, e);
+        parcial = menor(a,b,c,d);
+        return menor(parcial, e);
     }
 }
