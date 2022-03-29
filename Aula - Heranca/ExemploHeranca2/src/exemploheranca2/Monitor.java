@@ -7,7 +7,7 @@ package exemploheranca2;
 
 /**
  *
- * @author aluno
+ * @author aluno 
  */
 public class Monitor extends Aluno {
     private double bolsa;
