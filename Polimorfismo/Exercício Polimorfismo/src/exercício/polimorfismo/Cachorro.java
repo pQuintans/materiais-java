@@ -20,4 +20,8 @@ public class Cachorro extends Animal {
         System.out.println("Som de cachorro!");
     }
     
+    public void run(){
+        System.out.println("Subindo em árvores!");
+    }
+    
 }

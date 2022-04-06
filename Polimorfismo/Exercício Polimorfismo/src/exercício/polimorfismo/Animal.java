@@ -17,10 +17,6 @@ public class Animal {
         System.out.println("Som!");
     }
     
-    public void move(){
-        System.out.println("Correndo!");
-    }
-    
     public Animal(String name, int age) {
         this.name = name;
         this.age = age;

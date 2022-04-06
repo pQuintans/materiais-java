@@ -19,8 +19,7 @@ public class Preguica extends Animal{
         System.out.println("Som de preguiça!");
     }
     
-    @Override
-    public void move(){
+    public void climb(){
         System.out.println("Subindo em árvores!");
     }
 }
