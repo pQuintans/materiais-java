@@ -1,0 +1,27 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package interfaceexemplo1;
+
+/**
+ *
+ * @author aluno
+ */
+public class Carro implements Automovel, VeiculoTerrestre, Veiculo {
+    @Override
+    public void acelerar() {
+        System.out.println("Acelerando carro");
+    }
+    
+    @Override
+    public void freiar() {
+        System.out.println("Acelerando carro");
+    }
+    
+    @Override
+    public void ligar() {
+        System.out.println("Acelerando carro");
+    }
+}
