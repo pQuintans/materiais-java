@@ -11,6 +11,6 @@ package ex02;
  */
 public class SaldoInsuficienteException extends RuntimeException{
     public SaldoInsuficienteException(double saldo) {
-        System.out.println("Você só tem " + saldo + " de saldo disponivel.");
+        super("Você só tem " + saldo + " de saldo disponivel.");
     }
 }

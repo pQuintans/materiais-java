@@ -11,6 +11,18 @@ package ex02;
  */
 public abstract class ContaBancaria {
     protected double saldo;
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public ContaBancaria(double saldo) {
+        this.saldo = saldo;
+    }
     
     public void depositar(double deposito){
         if(deposito <= 0) {
@@ -25,8 +37,8 @@ public abstract class ContaBancaria {
             throw new ValorInvalidoException(saque);
         }        
         
-        if(saldo < saque) {
-            throw new SaldoInsuficienteException(saldo);
+        if(this.calcularSaldo() < saque) {
+            throw new SaldoInsuficienteException(this.calcularSaldo());
         }
         
         saldo -= saque;
@@ -37,8 +49,8 @@ public abstract class ContaBancaria {
             throw new ValorInvalidoException(valor);
         }
         
-        if(saldo < valor) {
-            throw new SaldoInsuficienteException(saldo);
+        if(this.calcularSaldo() < valor) {
+            throw new SaldoInsuficienteException(this.calcularSaldo());
         }
         
         this.sacar(valor);

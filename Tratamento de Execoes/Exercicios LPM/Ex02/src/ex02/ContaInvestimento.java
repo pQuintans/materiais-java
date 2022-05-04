@@ -10,6 +10,10 @@ package ex02;
  * @author aluno
  */
 public class ContaInvestimento extends ContaBancaria {
+    public ContaInvestimento(double saldo){
+        super(saldo);
+    }
+
     @Override
     public double calcularSaldo() {
         return 1.05 * saldo;

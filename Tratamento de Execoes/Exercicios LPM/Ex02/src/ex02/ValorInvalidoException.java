@@ -11,6 +11,6 @@ package ex02;
  */
 public class ValorInvalidoException extends RuntimeException {
     public ValorInvalidoException(double valor){
-        System.out.println("O valor " + valor + " não é válido");
+        super("O valor " + valor + " não é válido");
     }
 }

@@ -9,7 +9,11 @@ package ex02;
  *
  * @author aluno
  */
-public class ContaCorrente extends ContaBancaria {    
+public class ContaCorrente extends ContaBancaria {
+    public ContaCorrente(double saldo){
+        super(saldo);
+    }
+
     @Override
     public double calcularSaldo() {
         return 0.9 * saldo;
