@@ -6,6 +6,9 @@
 package view;
 
 import controller.AlunoController;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import model.Aluno;
 
 /**
  *
@@ -36,6 +39,7 @@ public class FrmAluno extends javax.swing.JFrame {
         lblNome = new javax.swing.JLabel();
         lblIdade = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
+        btnMostrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +56,13 @@ public class FrmAluno extends javax.swing.JFrame {
             }
         });
 
+        btnMostrar.setText("Mostrar");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,6 +70,7 @@ public class FrmAluno extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNome)
@@ -83,7 +95,9 @@ public class FrmAluno extends javax.swing.JFrame {
                     .addComponent(lblIdade))
                 .addGap(36, 36, 36)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -95,6 +109,15 @@ public class FrmAluno extends javax.swing.JFrame {
         //pegando informção da tela e passando para o conroller
         alControle.cadastrar(nome, idade);
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        ArrayList<Aluno> lista = alControle.getLista();
+        String result = new String();
+        for(Aluno a: lista){
+            result = result.concat(a.getNome() +  " " + a.getIdade() + "\n");
+        }
+        JOptionPane.showMessageDialog(null, result);
+    }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,6 +156,7 @@ public class FrmAluno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnMostrar;
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNome;
     private javax.swing.JTextField txtIdade;
