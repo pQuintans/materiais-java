@@ -31,4 +31,13 @@ public class AlunoController {
     public void setLista(ArrayList<Aluno> lista) {
         this.lista = lista;
     }
+    
+    public void deleteAluno(String nome){
+        for(Aluno a: lista){
+            if(a.getNome().equals(nome)){
+                lista.remove(a);
+                break;
+            }
+        }
+    }
 }
