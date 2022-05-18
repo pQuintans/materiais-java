@@ -14,12 +14,14 @@ public class Atleta {
     private String nome;
     private float altura;
     private int idade;
+    private float peso;
 
-    public Atleta(String codigo, String nome, float altura, int idade) {
+    public Atleta(String codigo, String nome, float altura, int idade, float peso) {
         this.codigo = codigo;
         this.nome = nome;
         this.altura = altura;
         this.idade = idade;
+        this.peso = peso;
     }
     
     public String getCodigo() {
@@ -53,6 +55,12 @@ public class Atleta {
     public void setIdade(int idade) {
         this.idade = idade;
     }
-    
-    
+
+    public float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
+    }
 }

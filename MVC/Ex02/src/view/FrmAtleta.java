@@ -5,16 +5,25 @@
  */
 package view;
 
+import controller.AtletaController;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import model.Atleta;
+import model.CampoVazioException;
+import model.NumeroNegativoException;
+
 /**
  *
  * @author aluno
  */
 public class FrmAtleta extends javax.swing.JFrame {
-
+    private AtletaController atletaController;
+    
     /**
      * Creates new form FrmAtleta
      */
     public FrmAtleta() {
+        atletaController = new AtletaController();
         initComponents();
     }
 
@@ -27,56 +36,214 @@ public class FrmAtleta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
+        lblPeso = new javax.swing.JLabel();
+        lblAltura = new javax.swing.JLabel();
+        lblIdade = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
+        txtAltura = new javax.swing.JTextField();
+        txtPeso = new javax.swing.JTextField();
+        txtIdade = new javax.swing.JTextField();
+        btnCadastro = new javax.swing.JButton();
+        btnMediaPesos = new javax.swing.JButton();
+        btnAlunoMaisAlto = new javax.swing.JButton();
+        btnInfoIdades = new javax.swing.JButton();
+        btnAtletas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Nome");
+        lblNome.setText("Nome");
 
-        jLabel2.setText("Código");
+        lblCodigo.setText("Código");
 
-        jLabel3.setText("jLabel1");
+        lblPeso.setText("Peso");
 
-        jLabel4.setText("jLabel1");
+        lblAltura.setText("Altura");
 
-        jLabel5.setText("jLabel1");
+        lblIdade.setText("Idade");
+
+        txtPeso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesoActionPerformed(evt);
+            }
+        });
+
+        btnCadastro.setText("Cadastrar");
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroActionPerformed(evt);
+            }
+        });
+
+        btnMediaPesos.setText("Média Pesos");
+        btnMediaPesos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMediaPesosActionPerformed(evt);
+            }
+        });
+
+        btnAlunoMaisAlto.setText("Aluno mais alto");
+        btnAlunoMaisAlto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlunoMaisAltoActionPerformed(evt);
+            }
+        });
+
+        btnInfoIdades.setText("Informações sobre idades");
+        btnInfoIdades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInfoIdadesActionPerformed(evt);
+            }
+        });
+
+        btnAtletas.setText("Atletas");
+        btnAtletas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtletasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addContainerGap(334, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblPeso)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblIdade)
+                                    .addComponent(lblAltura))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnInfoIdades)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnAtletas))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnCadastro)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnMediaPesos)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnAlunoMaisAlto))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(lblCodigo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCodigo)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPeso)
+                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAltura)
+                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIdade)
+                    .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastro)
+                    .addComponent(btnMediaPesos)
+                    .addComponent(btnAlunoMaisAlto))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInfoIdades)
+                    .addComponent(btnAtletas))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesoActionPerformed
+
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
+        try {
+            String codigo = txtCodigo.getText();
+            String nome = txtNome.getText();
+            if(codigo.equals("") || nome.equals("") || txtAltura.getText().equals("") || txtIdade.getText().equals("") || txtPeso.getText().equals("")){
+                throw new CampoVazioException();            
+            }
+            
+            float altura = Float.parseFloat(txtAltura.getText());
+            float peso = Float.parseFloat(txtPeso.getText());
+            int idade = Integer.parseInt(txtIdade.getText());
+            
+            if(altura < 0 || peso < 0 || idade < 0) {
+                throw new NumeroNegativoException();
+            }            
+            
+            String response = atletaController.cadastrarAtleta(codigo, nome, altura, idade, peso);
+            JOptionPane.showMessageDialog(null, response);
+        } catch(CampoVazioException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch(NumeroNegativoException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (NumberFormatException e) {         
+            JOptionPane.showMessageDialog(null, "Altura, peso e idade devem ser números");
+        }
+    }//GEN-LAST:event_btnCadastroActionPerformed
+
+    private void btnMediaPesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMediaPesosActionPerformed
+        float mediaPesos = atletaController.calcularMediaPeso();
+        
+        JOptionPane.showMessageDialog(null, Float.toString(mediaPesos));
+    }//GEN-LAST:event_btnMediaPesosActionPerformed
+
+    private void btnAlunoMaisAltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunoMaisAltoActionPerformed
+        String atletaMaisAltoNome = atletaController.getAlunoMaisAlto();
+        JOptionPane.showMessageDialog(null, atletaMaisAltoNome);
+    }//GEN-LAST:event_btnAlunoMaisAltoActionPerformed
+
+    private void btnInfoIdadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoIdadesActionPerformed
+        String infoIdades = atletaController.getInfoIdades();
+        JOptionPane.showMessageDialog(null, infoIdades);
+    }//GEN-LAST:event_btnInfoIdadesActionPerformed
+
+    private void btnAtletasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtletasActionPerformed
+        String result = new String();
+        ArrayList<Atleta> atletas = atletaController.getAtletas();
+        for(Atleta a : atletas){
+            result = result.concat(a.getNome() + "\n");
+        }
+        JOptionPane.showMessageDialog(null, result);
+    }//GEN-LAST:event_btnAtletasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,10 +281,20 @@ public class FrmAtleta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JButton btnAlunoMaisAlto;
+    private javax.swing.JButton btnAtletas;
+    private javax.swing.JButton btnCadastro;
+    private javax.swing.JButton btnInfoIdades;
+    private javax.swing.JButton btnMediaPesos;
+    private javax.swing.JLabel lblAltura;
+    private javax.swing.JLabel lblCodigo;
+    private javax.swing.JLabel lblIdade;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPeso;
+    private javax.swing.JTextField txtAltura;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtIdade;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtPeso;
     // End of variables declaration//GEN-END:variables
 }
