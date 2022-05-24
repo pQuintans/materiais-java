@@ -8,6 +8,7 @@ package view;
 import controller.AlunoController;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Aluno;
 import model.StringVaziaException;
 
@@ -17,11 +18,15 @@ import model.StringVaziaException;
  */
 public class FrmAluno extends javax.swing.JFrame {
     private AlunoController alControle;
+    private DefaultTableModel tbl;
 
     /**
      * Creates new form FrmAluno
      */
     public FrmAluno() {
+        tbl = new DefaultTableModel();
+        tbl.addColumn("Nome");
+        tbl.addColumn("Idade");
         alControle =  new AlunoController();
         initComponents();
     }
@@ -45,6 +50,8 @@ public class FrmAluno extends javax.swing.JFrame {
         lblNome1 = new javax.swing.JLabel();
         txtExcluir = new javax.swing.JTextField();
         btnExcluir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAlunos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,12 +92,28 @@ public class FrmAluno extends javax.swing.JFrame {
             }
         });
 
+        tblAlunos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Idade"
+            }
+        ));
+        tblAlunos.setName(""); // NOI18N
+        tblAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblAlunosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblAlunos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNome1)
@@ -109,31 +132,36 @@ public class FrmAluno extends javax.swing.JFrame {
                         .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnMostrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(59, 59, 59))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNome))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblIdade))
-                .addGap(18, 18, 18)
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblNome1))
-                    .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNome))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIdade))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblNome1))
+                            .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(25, 25, 25))
         );
 
@@ -149,6 +177,7 @@ public class FrmAluno extends javax.swing.JFrame {
             int idade = Integer.parseInt(txtIdade.getText());
             alControle.cadastrar(nome, idade);
             btnLimparActionPerformed(evt);
+            btnMostrarActionPerformed(evt);
         } catch (NumberFormatException e) {         
             JOptionPane.showMessageDialog(null, "Idade deve ser um número");
             txtIdade.setText("");
@@ -163,25 +192,38 @@ public class FrmAluno extends javax.swing.JFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         txtIdade.setText("");
         txtNome.setText("");
+        tbl.setRowCount(0);
+        tblAlunos.setModel(tbl);
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        tbl.setNumRows(0);
         ArrayList<Aluno> lista = alControle.getLista();
-        String result = new String();
+        //String result = new String();
         for(Aluno a: lista){
-            result = result.concat(a.getNome() +  " " + a.getIdade() + "\n");
+            //result = result.concat(a.getNome() +  " " + a.getIdade() + "\n");
+            tbl.addRow(new Object[]{a.getNome(), a.getIdade()});
         }
-        JOptionPane.showMessageDialog(null, result);
+        //JOptionPane.showMessageDialog(null, result);
+        tblAlunos.setModel(tbl);
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         String nome = txtExcluir.getText();
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir " + nome + "?");
         // 0 = yes | 1 = no | 2 = cancel
-        if(resposta == 0)
-            alControle.deleteAluno(nome);
+        if(resposta == 0){
+            alControle.deleteAluno(nome);   
+            btnMostrarActionPerformed(evt);
+        }
         txtExcluir.setText("");
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void tblAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAlunosMouseClicked
+        int linhaSelec = tblAlunos.getSelectedRow();
+        String nome = tblAlunos.getValueAt(linhaSelec, 0).toString();
+        txtExcluir.setText(nome);
+    }//GEN-LAST:event_tblAlunosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -223,9 +265,11 @@ public class FrmAluno extends javax.swing.JFrame {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnMostrar;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblNome1;
+    private javax.swing.JTable tblAlunos;
     private javax.swing.JTextField txtExcluir;
     private javax.swing.JTextField txtIdade;
     private javax.swing.JTextField txtNome;
