@@ -11,19 +11,21 @@ import javax.swing.table.DefaultTableModel;
 import model.Cliente;
 import model.IdadeNegativaException;
 import model.StringVaziaException;
+import static view.FrmLanding.clienteController;
 
 /**
  *
  * @author aluno
  */
 public class FrmCliente extends javax.swing.JFrame {
-    private ClienteController clienteController;
     private DefaultTableModel tbl;
+    
+    private static FrmCliente clienteForm = null;
 
     /**
      * Creates new form FrmCliente
      */
-    public FrmCliente() {
+    private FrmCliente() {
         tbl = new DefaultTableModel();
         
         tbl.addColumn("CPF");
@@ -34,10 +36,16 @@ public class FrmCliente extends javax.swing.JFrame {
         
         tbl.setRowCount(0);
         
-        clienteController = new ClienteController();
         initComponents();
         
         tblClientes.setModel(tbl);
+    }
+    
+    public static FrmCliente getInstancia(){
+        if(clienteForm == null){
+            clienteForm = new FrmCliente();
+        }
+        return clienteForm;
     }
 
     /**
@@ -58,7 +66,6 @@ public class FrmCliente extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         txtEndereco = new javax.swing.JTextField();
         btnCadastro = new javax.swing.JButton();
-        btnVoltar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtExclusao = new javax.swing.JTextField();
@@ -79,7 +86,7 @@ public class FrmCliente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Gerenciamento de Clientes");
@@ -96,8 +103,6 @@ public class FrmCliente extends javax.swing.JFrame {
                 btnCadastroActionPerformed(evt);
             }
         });
-
-        btnVoltar.setText("<-");
 
         jLabel2.setText("Cadastro");
 
@@ -130,43 +135,40 @@ public class FrmCliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnVoltar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(109, 109, 109)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtExclusao)
+                                        .addComponent(btnExclusao, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtIdade)
+                                        .addComponent(txtCpf)
+                                        .addComponent(txtEmail)
+                                        .addComponent(txtEndereco)
+                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(92, 92, 92)
-                        .addComponent(jLabel2)))
-                .addContainerGap(179, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtExclusao)
-                                .addComponent(btnExclusao, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtIdade)
-                                .addComponent(txtCpf)
-                                .addComponent(txtEmail)
-                                .addComponent(txtEndereco)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(btnVoltar))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -245,9 +247,10 @@ public class FrmCliente extends javax.swing.JFrame {
                // throw new
                 //Exceção não econtrado
             }
-            
+                
             tbl.removeRow(response);
             tblClientes.setModel(tbl);
+            JOptionPane.showMessageDialog(this, "Cliente removido com sucesso");
         } catch (StringVaziaException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -291,7 +294,6 @@ public class FrmCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastro;
     private javax.swing.JButton btnExclusao;
-    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

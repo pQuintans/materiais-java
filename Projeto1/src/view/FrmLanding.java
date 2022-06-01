@@ -5,16 +5,20 @@
  */
 package view;
 
+import controller.ClienteController;
+
 /**
  *
  * @author aluno
  */
 public class FrmLanding extends javax.swing.JFrame {
+    static ClienteController clienteController;
 
     /**
      * Creates new form FrmLanding
      */
     public FrmLanding() {
+        clienteController = new ClienteController();
         initComponents();
     }
 
@@ -28,17 +32,33 @@ public class FrmLanding extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAbrirGerenciarClientes = new javax.swing.JButton();
+        btnAbrirBuscaCliente = new javax.swing.JButton();
+        btnClienteInfos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("CaixoteStore");
 
-        jButton1.setText("Gerenciar Clientes");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAbrirGerenciarClientes.setText("Gerenciar Clientes");
+        btnAbrirGerenciarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAbrirGerenciarClientesActionPerformed(evt);
+            }
+        });
+
+        btnAbrirBuscaCliente.setText("Buscar clientes");
+        btnAbrirBuscaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirBuscaClienteActionPerformed(evt);
+            }
+        });
+
+        btnClienteInfos.setText("Informações sobre Clientes");
+        btnClienteInfos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteInfosActionPerformed(evt);
             }
         });
 
@@ -49,11 +69,17 @@ public class FrmLanding extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jButton1))
-                    .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAbrirGerenciarClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAbrirBuscaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(122, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClienteInfos)
+                .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,16 +87,31 @@ public class FrmLanding extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addComponent(btnAbrirGerenciarClientes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAbrirBuscaCliente)
+                .addGap(66, 66, 66)
+                .addComponent(btnClienteInfos)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new FrmCliente().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnAbrirGerenciarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirGerenciarClientesActionPerformed
+        FrmCliente clienteForm = FrmCliente.getInstancia();
+        clienteForm.setVisible(true);
+    }//GEN-LAST:event_btnAbrirGerenciarClientesActionPerformed
+
+    private void btnAbrirBuscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirBuscaClienteActionPerformed
+        FrmBuscaCliente buscaClienteForm = FrmBuscaCliente.getInstancia();
+        buscaClienteForm.setVisible(true);
+    }//GEN-LAST:event_btnAbrirBuscaClienteActionPerformed
+
+    private void btnClienteInfosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteInfosActionPerformed
+        FrmClienteInfos buscaClienteForm = FrmClienteInfos.getInstancia();
+        buscaClienteForm.setVisible(true);
+    }//GEN-LAST:event_btnClienteInfosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,7 +149,9 @@ public class FrmLanding extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAbrirBuscaCliente;
+    private javax.swing.JButton btnAbrirGerenciarClientes;
+    private javax.swing.JButton btnClienteInfos;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
