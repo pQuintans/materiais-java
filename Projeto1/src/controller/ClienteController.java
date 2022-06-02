@@ -35,6 +35,15 @@ public class ClienteController {
         return "Cliente cadastrado com sucesso";
     }
     
+     public int clienteVerificar(String cpf){        
+        for(Cliente c: clientes){
+            if(c.getCpf().equals(cpf)){
+               return 1;
+            }
+        }
+        return 0;
+    }
+    
     public int clienteExcluir(String cpf){
         boolean clienteExcluido = false;
         String nome = "";
