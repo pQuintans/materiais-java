@@ -15,13 +15,16 @@ public class Jogo {
     private int anoLancamento;
     private String genero;
     private float preco;
+    private String descricao;
+    //precisa adicionar a descrição
 
-    public Jogo(int codigo, String nome, int anoLancamento, String genero, float preco) {
+    public Jogo(int codigo, String nome, int anoLancamento, String genero, float preco, String descricao) {
         this.codigo = codigo;
         this.nome = nome;
         this.anoLancamento = anoLancamento;
         this.genero = genero;
         this.preco = preco;
+        this.descricao = descricao;
     }
 
     public int getCodigo() {
@@ -62,5 +65,13 @@ public class Jogo {
 
     public void setPreco(float preco) {
         this.preco = preco;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(int descricao) {
+        this.codigo = descricao;
     }
 }
