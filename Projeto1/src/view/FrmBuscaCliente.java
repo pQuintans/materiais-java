@@ -6,7 +6,7 @@
 package view;
 
 import javax.swing.JOptionPane;
-import model.StringVaziaException;
+import model.Excepetions.StringVaziaException;
 import static view.FrmLanding.clienteController;
 
 /**

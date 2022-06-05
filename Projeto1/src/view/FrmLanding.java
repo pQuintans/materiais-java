@@ -35,6 +35,7 @@ public class FrmLanding extends javax.swing.JFrame {
         btnAbrirGerenciarClientes = new javax.swing.JButton();
         btnAbrirBuscaCliente = new javax.swing.JButton();
         btnClienteInfos = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +63,13 @@ public class FrmLanding extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Gerenciar Jogos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,7 +82,8 @@ public class FrmLanding extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnAbrirGerenciarClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAbrirBuscaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnAbrirBuscaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -90,7 +99,9 @@ public class FrmLanding extends javax.swing.JFrame {
                 .addComponent(btnAbrirGerenciarClientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAbrirBuscaCliente)
-                .addGap(66, 66, 66)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(39, 39, 39)
                 .addComponent(btnClienteInfos)
                 .addContainerGap(78, Short.MAX_VALUE))
         );
@@ -112,6 +123,11 @@ public class FrmLanding extends javax.swing.JFrame {
         FrmClienteInfos buscaClienteForm = FrmClienteInfos.getInstancia();
         buscaClienteForm.setVisible(true);
     }//GEN-LAST:event_btnClienteInfosActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FrmJogo jogoForm = FrmJogo.getInstancia();
+        jogoForm.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,6 +168,7 @@ public class FrmLanding extends javax.swing.JFrame {
     private javax.swing.JButton btnAbrirBuscaCliente;
     private javax.swing.JButton btnAbrirGerenciarClientes;
     private javax.swing.JButton btnClienteInfos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

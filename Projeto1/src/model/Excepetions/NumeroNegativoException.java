@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.Excepetions;
 
 /**
  *
  * @author aluno
  */
-public class IdadeNegativaException  extends RuntimeException {
-    public IdadeNegativaException(String message) {
+public class NumeroNegativoException  extends RuntimeException {
+    public NumeroNegativoException(String message) {
         super(message);
     }
 }

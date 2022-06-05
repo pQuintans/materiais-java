@@ -9,9 +9,9 @@ import controller.ClienteController;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Cliente;
-import model.ClienteExistenteException;
-import model.IdadeNegativaException;
-import model.StringVaziaException;
+import model.Excepetions.DadoExistenteException;
+import model.Excepetions.NumeroNegativoException;
+import model.Excepetions.StringVaziaException;
 import static view.FrmLanding.clienteController;
 
 /**
@@ -248,7 +248,7 @@ public class FrmCliente extends javax.swing.JFrame {
             } 
             
             if(idade < 0) {
-                throw new IdadeNegativaException("Não deve ser inserida uma idade menor do que 0");
+                throw new NumeroNegativoException("Não deve ser inserida uma idade menor do que 0");
             } 
             
             if(cpf.equals("")){
@@ -264,19 +264,19 @@ public class FrmCliente extends javax.swing.JFrame {
             } 
                   
             if(clienteController.clienteVerificar(cpf) == 1){
-                  throw new ClienteExistenteException();               
+                  throw new DadoExistenteException();               
             }
             
             JOptionPane.showMessageDialog(this, clienteController.clienteCadastro(nome, idade, cpf, email, endereco));
             
             tbl.addRow(new Object[]{cpf, nome, email, idade, endereco});
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "O campo idade deve ser numérico");
-        } catch (IdadeNegativaException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
         } catch (StringVaziaException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
-        } catch (ClienteExistenteException e){
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "O campo idade deve ser numérico");
+        } catch (NumeroNegativoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        } catch (DadoExistenteException e){
            JOptionPane.showMessageDialog(this, e.getMessage()); 
         }
     }//GEN-LAST:event_btnCadastroActionPerformed

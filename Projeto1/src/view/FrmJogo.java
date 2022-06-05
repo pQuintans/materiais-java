@@ -5,18 +5,46 @@
  */
 package view;
 
+import controller.JogoController;
+import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Excepetions.NumeroNegativoException;
+import model.Excepetions.StringVaziaException;
+
 /**
  *
  * @author aluno
  */
 public class FrmJogo extends javax.swing.JFrame {
-
+    private static FrmJogo jogoForm = null;
+    JogoController jogoController; 
+    private DefaultTableModel tbl;
+    DecimalFormat df = new DecimalFormat("#.##");
     /**
      * Creates new form FrmJogo
      */
     public FrmJogo() {
+        jogoController = new JogoController();
+        tbl = new DefaultTableModel();
         initComponents();
+        tbl.addColumn("Código");
+        tbl.addColumn("Nome");
+        tbl.addColumn("Lançamento");
+        tbl.addColumn("Genêro");
+        tbl.addColumn("Preço");
+        tbl.addColumn("Descrição");
+        tbl.setRowCount(0);
+        tblJogos.setModel(tbl);
     }
+    
+    public static FrmJogo getInstancia(){
+        if(jogoForm == null){
+            jogoForm = new FrmJogo();
+        }
+        return jogoForm;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,6 +72,8 @@ public class FrmJogo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        txtDescricao = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +128,9 @@ public class FrmJogo extends javax.swing.JFrame {
 
         jLabel5.setText("Ano de lançamento");
 
+        jLabel8.setText("Descrição");
+        jLabel8.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,12 +153,14 @@ public class FrmJogo extends javax.swing.JFrame {
                                         .addComponent(txtAnoLancamento)
                                         .addComponent(txtGenero)
                                         .addComponent(txtPreco)
-                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.TRAILING))
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING))))
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -163,9 +198,13 @@ public class FrmJogo extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel8)
+                        .addGap(2, 2, 2)
+                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCadastro)
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addGap(5, 5, 5)
                         .addComponent(jLabel9)
@@ -181,27 +220,28 @@ public class FrmJogo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExclusaoActionPerformed
-        /*(try {
-            String cpf = txtCodigo.getText();
-
-            if(cpf.equals("")){
+        try {
+            if(txtCodigo.getText().equals("")){
                 throw new StringVaziaException("O campo de exclusão não pode ser vazio");
             }
+            
+            int codigo = Integer.parseInt(txtCodigo.getText());
 
-            int response = clienteController.clienteExcluir(cpf);
+            int response = jogoController.jogoExcluir(codigo);
 
             if(response < 0) {
                 // throw new
                 //Exceção não econtrado
             }
-
+            
+            JOptionPane.showMessageDialog(this, response);
             tbl.removeRow(response);
             tblJogos.setModel(tbl);
-            JOptionPane.showMessageDialog(this, "Cliente removido com sucesso");
+            JOptionPane.showMessageDialog(this, "Jogo removido com sucesso");
         } catch (StringVaziaException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        */
+        
     }//GEN-LAST:event_btnExclusaoActionPerformed
 
     private void txtGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGeneroActionPerformed
@@ -214,27 +254,35 @@ public class FrmJogo extends javax.swing.JFrame {
             int anoLancamento = Integer.parseInt(txtAnoLancamento.getText()); 
             String genero = txtGenero.getText();
             float preco = Float.parseFloat(txtPreco.getText());
+            String descricao = txtDescricao.getText();
 
             if(nome.equals("")){
                 throw new StringVaziaException("O campo nome não pode ser vazio");
             }
 
             if(anoLancamento < 0) {
-                throw new IdadeNegativaException("Não deve ser inserida uma idade menor do que 0");
+                throw new NumeroNegativoException("Não deve ser inserida um ano menor do que 0");
             }
+            
+            if(genero.equals("")){
+                throw new StringVaziaException("O campo nome não pode ser vazio");
+            }
+            
+            if(descricao.equals("")){
+                throw new StringVaziaException("O campo nome não pode ser vazio");
+            }
+            
 
             //fazer os outros throw
-            JOptionPane.showMessageDialog(this, clienteController.clienteCadastro(nome, idade, cpf, email, endereco));
-
-            tbl.addRow(new Object[]{cpf, nome, email, idade, endereco});
+            JOptionPane.showMessageDialog(this, jogoController.JogoCadastro(nome, anoLancamento, genero, preco, descricao));
+            tbl.addRow(new Object[]{1, nome, anoLancamento, genero, df.format(preco), descricao});
+        }  catch (StringVaziaException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "O campo idade deve ser numérico");
-        } catch (IdadeNegativaException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        } catch (StringVaziaException e) {
+        } catch (NumeroNegativoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-        */
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     /**
@@ -282,11 +330,13 @@ public class FrmJogo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblJogos;
     private javax.swing.JTextField txtAnoLancamento;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtGenero;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
