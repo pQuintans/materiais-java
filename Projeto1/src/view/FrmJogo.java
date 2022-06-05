@@ -279,7 +279,7 @@ public class FrmJogo extends javax.swing.JFrame {
         }  catch (StringVaziaException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "O campo idade deve ser numérico");
+            JOptionPane.showMessageDialog(this, "O campo Lançamento deve ser numérico");
         } catch (NumeroNegativoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
