@@ -26,13 +26,12 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnClientesMenoresIdade" max="32767" attributes="0"/>
-                          <Component id="btnMaisJovem" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnClientesAcima60" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnMaisVelho" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnMediaIdades" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnMaisCarosMedia" max="32767" attributes="0"/>
+                          <Component id="btnMaisBarato" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnMediaPreco" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnMaisCaro" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -40,7 +39,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace pref="44" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -50,51 +49,49 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Component id="btnMaisVelho" min="-2" max="-2" attributes="0"/>
+              <Component id="btnMaisCaro" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnMaisJovem" min="-2" max="-2" attributes="0"/>
+              <Component id="btnMaisBarato" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnClientesAcima60" min="-2" max="-2" attributes="0"/>
+              <Component id="btnMediaPreco" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnClientesMenoresIdade" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnMediaIdades" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <Component id="btnMaisCarosMedia" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="55" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="btnMaisVelho">
+    <Component class="javax.swing.JButton" name="btnMaisCaro">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cliente mais velho"/>
+        <Property name="text" type="java.lang.String" value="Jogo mais caro"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMaisVelhoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMaisCaroActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnMaisJovem">
+    <Component class="javax.swing.JButton" name="btnMaisBarato">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cliente mais novo"/>
+        <Property name="text" type="java.lang.String" value="Jogo mais barato"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMaisJovemActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMaisBaratoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnClientesAcima60">
+    <Component class="javax.swing.JButton" name="btnMediaPreco">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Clientes mais velhos que 60 anos"/>
+        <Property name="text" type="java.lang.String" value="M&#xe9;dia de pre&#xe7;os"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClientesAcima60ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMediaPrecoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnClientesMenoresIdade">
+    <Component class="javax.swing.JButton" name="btnMaisCarosMedia">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Clientes menores de idade"/>
+        <Property name="text" type="java.lang.String" value="Jogos mais caros que a m&#xe9;dia"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClientesMenoresIdadeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMaisCarosMediaActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
@@ -102,16 +99,8 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es sobre Clientes"/>
+        <Property name="text" type="java.lang.String" value="Informa&#xe7;&#xf5;es sobre Jogos"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnMediaIdades">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Idade m&#xe9;dia dos clientes"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMediaIdadesActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

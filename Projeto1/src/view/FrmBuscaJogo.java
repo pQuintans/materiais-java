@@ -7,27 +7,27 @@ package view;
 
 import javax.swing.JOptionPane;
 import model.Excepetions.StringVaziaException;
-import static view.FrmLanding.clienteController;
+import static view.FrmLanding.jogoController;
 
 /**
  *
  * @author aluno
  */
-public class FrmBuscaCliente extends javax.swing.JFrame {
-    private static FrmBuscaCliente buscaForm = null;
+public class FrmBuscaJogo extends javax.swing.JFrame {
+    private static FrmBuscaJogo buscaJogoForm = null;
 
     /**
      * Creates new form FrmBuscaCliente
      */
-    private FrmBuscaCliente() {
+    private FrmBuscaJogo() {
         initComponents();
     }
     
-    public static FrmBuscaCliente getInstancia(){
-        if(buscaForm == null){
-            buscaForm = new FrmBuscaCliente();
+    public static FrmBuscaJogo getInstancia(){
+        if(buscaJogoForm == null){
+            buscaJogoForm = new FrmBuscaJogo();
         }
-        return buscaForm;
+        return buscaJogoForm;
     }
 
     /**
@@ -46,9 +46,9 @@ public class FrmBuscaCliente extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Buscar Cliente");
+        jLabel1.setText("Buscar Jogo");
 
-        cmbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CPF", "Nome", "Endereço", "E-mail" }));
+        cmbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Descrição", "Ano de lançamento", "Nome", "Gênero" }));
 
         btnBusca.setText("Buscar");
         btnBusca.addActionListener(new java.awt.event.ActionListener() {
@@ -69,12 +69,13 @@ public class FrmBuscaCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(163, 163, 163))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +88,7 @@ public class FrmBuscaCliente extends javax.swing.JFrame {
                     .addComponent(cmbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnBusca)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,10 +103,10 @@ public class FrmBuscaCliente extends javax.swing.JFrame {
                 throw new StringVaziaException("O campo de busca não pode ser vazio");
             } 
             
-            String resposta = clienteController.clienteBuscar(filtro, busca);
+            String resposta = jogoController.jogoBuscar(filtro, busca);
             String label = "";
             
-            if(!resposta.equals("Nenhum cliente encontrado")){
+            if(!resposta.equals("Nenhum jogo encontrado")){
                 label = "Busca por " + filtro + ": \n";
             }
 
@@ -132,20 +133,21 @@ public class FrmBuscaCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmBuscaJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmBuscaJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmBuscaJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmBuscaCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmBuscaJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmBuscaCliente().setVisible(true);
+                new FrmBuscaJogo().setVisible(true);
             }
         });
     }

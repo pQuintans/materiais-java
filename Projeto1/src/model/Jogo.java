@@ -11,6 +11,7 @@ package model;
  */
 public class Jogo {
     private int codigo;
+    private static int numeroJogos;
     private String nome;
     private int anoLancamento;
     private String genero;
@@ -18,13 +19,18 @@ public class Jogo {
     private String descricao;
     //precisa adicionar a descrição
 
-    public Jogo(int codigo, String nome, int anoLancamento, String genero, float preco, String descricao) {
-        this.codigo = codigo;
+    public Jogo(String nome, int anoLancamento, String genero, float preco, String descricao) {
+        numeroJogos++;
+        this.codigo = numeroJogos;
         this.nome = nome;
         this.anoLancamento = anoLancamento;
         this.genero = genero;
         this.preco = preco;
         this.descricao = descricao;
+    }
+    
+    public static int getNumeroJogos(){
+        return numeroJogos;
     }
 
     public int getCodigo() {

@@ -5,10 +5,8 @@
  */
 package view;
 
-import controller.ClienteController;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Cliente;
 import model.Excepetions.DadoExistenteException;
 import model.Excepetions.NumeroNegativoException;
 import model.Excepetions.StringVaziaException;
@@ -19,8 +17,7 @@ import static view.FrmLanding.clienteController;
  * @author aluno
  */
 public class FrmCliente extends javax.swing.JFrame {
-    private DefaultTableModel tbl;
-    
+    private DefaultTableModel tbl;    
     private static FrmCliente clienteForm = null;
 
     /**
@@ -238,46 +235,50 @@ public class FrmCliente extends javax.swing.JFrame {
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
         try {
             String nome = txtNome.getText();
-            int idade = Integer.parseInt(txtIdade.getText());
+            String idade = txtIdade.getText();
             String cpf = txtCpf.getText();
             String email = txtEmail.getText();
             String endereco = txtEndereco.getText();
             
             if(nome.equals("")){
-                throw new StringVaziaException("O campo nome não pode ser vazio");
+                throw new StringVaziaException("O campo Nome não pode ser vazio");
             } 
             
-            if(idade < 0) {
-                throw new NumeroNegativoException("Não deve ser inserida uma idade menor do que 0");
+            if(idade.equals("")){
+                throw new StringVaziaException("O campo Idade não pode ser vazio");            
+            }
+            
+            if(Integer.parseInt(idade) < 0) {
+                throw new NumeroNegativoException("Não deve ser inserida uma idade negativa");
             } 
             
             if(cpf.equals("")){
-                throw new StringVaziaException("O campo cpf não pode ser vazio");
+                throw new StringVaziaException("O campo CPF não pode ser vazio");
             }
             
             if(email.equals("")){
-                throw new StringVaziaException("O campo email não pode ser vazio");
+                throw new StringVaziaException("O campo E-mail não pode ser vazio");
             } 
             
             if(endereco.equals("")){
-                throw new StringVaziaException("O campo endereco não pode ser vazio");
+                throw new StringVaziaException("O campo Endereço não pode ser vazio");
             } 
                   
             if(clienteController.clienteVerificar(cpf) == 1){
-                  throw new DadoExistenteException();               
+                throw new DadoExistenteException("Este CPF já está em uso!");               
             }
             
-            JOptionPane.showMessageDialog(this, clienteController.clienteCadastro(nome, idade, cpf, email, endereco));
+            JOptionPane.showMessageDialog(null, clienteController.clienteCadastro(nome, Integer.parseInt(idade), cpf, email, endereco));
             
             tbl.addRow(new Object[]{cpf, nome, email, idade, endereco});
         } catch (StringVaziaException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "O campo idade deve ser numérico");
+            JOptionPane.showMessageDialog(null, "O campo idade deve ser numérico");
         } catch (NumeroNegativoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         } catch (DadoExistenteException e){
-           JOptionPane.showMessageDialog(this, e.getMessage()); 
+           JOptionPane.showMessageDialog(null, e.getMessage()); 
         }
     }//GEN-LAST:event_btnCadastroActionPerformed
 
@@ -302,9 +303,9 @@ public class FrmCliente extends javax.swing.JFrame {
                 
             tbl.removeRow(response);
             tblClientes.setModel(tbl);
-            JOptionPane.showMessageDialog(this, "Cliente removido com sucesso");
+            JOptionPane.showMessageDialog(null, "Cliente removido com sucesso");
         } catch (StringVaziaException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnExclusaoActionPerformed
 

@@ -32,15 +32,16 @@
                       <Component id="cmbFiltro" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                       <Component id="btnBusca" min="-2" pref="131" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="82" max="32767" attributes="0"/>
+              <EmptySpace pref="52" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -56,7 +57,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnBusca" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -64,7 +65,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar Cliente"/>
+        <Property name="text" type="java.lang.String" value="Buscar Jogo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtBusca">
@@ -73,10 +74,10 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="CPF"/>
-            <StringItem index="1" value="Nome"/>
-            <StringItem index="2" value="Endere&#xe7;o"/>
-            <StringItem index="3" value="E-mail"/>
+            <StringItem index="0" value="Descri&#xe7;&#xe3;o"/>
+            <StringItem index="1" value="Ano de lan&#xe7;amento"/>
+            <StringItem index="2" value="Nome"/>
+            <StringItem index="3" value="G&#xea;nero"/>
           </StringArray>
         </Property>
       </Properties>

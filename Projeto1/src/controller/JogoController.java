@@ -29,12 +29,15 @@ public class JogoController {
     }
     
      public String JogoCadastro(String nome, int anoLancamento, String genero, float preco, String descricao){
-        int codigo = jogos.size() + 1;
-        Jogo jogo = new Jogo(codigo, nome, anoLancamento, genero, preco, descricao);
+        Jogo jogo = new Jogo(nome, anoLancamento, genero, preco, descricao);
         jogos.add(jogo);
         
         return "Jogo cadastrado com sucesso";
     }
+     
+     public int jogoGetCodigoAtual(){
+         return Jogo.getNumeroJogos();
+     }
      
      public int jogoExcluir(int codigo){
         int actualRow = 0;
@@ -62,7 +65,7 @@ public class JogoController {
                 if(c.getDescricao().toUpperCase().startsWith(busca)){
                     resposta = resposta.concat(c.getNome() + " - " + c.getDescricao() + "\n");
                 }
-            } else if (filtro.equals("Ano Lançamento")){
+            } else if (filtro.equals("Ano de lançamento")){
                 if(c.getAnoLancamento() == Integer.parseInt(busca)){
                     resposta = resposta.concat(c.getAnoLancamento() + " - " + c.getNome() + "\n");
                 }

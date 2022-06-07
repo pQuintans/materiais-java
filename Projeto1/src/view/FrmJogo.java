@@ -5,12 +5,13 @@
  */
 package view;
 
-import controller.JogoController;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Excepetions.DadoNaoEncontrado;
 import model.Excepetions.NumeroNegativoException;
 import model.Excepetions.StringVaziaException;
+import static view.FrmLanding.jogoController;
 
 /**
  *
@@ -18,14 +19,12 @@ import model.Excepetions.StringVaziaException;
  */
 public class FrmJogo extends javax.swing.JFrame {
     private static FrmJogo jogoForm = null;
-    JogoController jogoController; 
     private DefaultTableModel tbl;
     DecimalFormat df = new DecimalFormat("#.##");
     /**
      * Creates new form FrmJogo
      */
     public FrmJogo() {
-        jogoController = new JogoController();
         tbl = new DefaultTableModel();
         initComponents();
         tbl.addColumn("Código");
@@ -75,7 +74,7 @@ public class FrmJogo extends javax.swing.JFrame {
         txtDescricao = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setText("Excluir");
 
@@ -140,9 +139,6 @@ public class FrmJogo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(109, 109, 109)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -160,18 +156,22 @@ public class FrmJogo extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel3)
+                                .addGap(84, 84, 84)))
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
+                        .addGap(71, 71, 71)
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(215, 215, 215))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,16 +230,16 @@ public class FrmJogo extends javax.swing.JFrame {
             int response = jogoController.jogoExcluir(codigo);
 
             if(response < 0) {
-                // throw new
-                //Exceção não econtrado
+                throw new DadoNaoEncontrado("Jogo não encontrado");
             }
-            
-            JOptionPane.showMessageDialog(this, response);
+           
             tbl.removeRow(response);
             tblJogos.setModel(tbl);
-            JOptionPane.showMessageDialog(this, "Jogo removido com sucesso");
+            JOptionPane.showMessageDialog(null, "Jogo removido com sucesso");
         } catch (StringVaziaException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (DadoNaoEncontrado e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         
     }//GEN-LAST:event_btnExclusaoActionPerformed
@@ -251,37 +251,47 @@ public class FrmJogo extends javax.swing.JFrame {
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
         try {
             String nome = txtNome.getText();
-            int anoLancamento = Integer.parseInt(txtAnoLancamento.getText()); 
+            String anoLancamento = txtAnoLancamento.getText(); 
             String genero = txtGenero.getText();
-            float preco = Float.parseFloat(txtPreco.getText());
+            String preco = txtPreco.getText();
             String descricao = txtDescricao.getText();
 
             if(nome.equals("")){
-                throw new StringVaziaException("O campo nome não pode ser vazio");
+                throw new StringVaziaException("O campo Nome não pode ser vazio");
+            }
+            
+            if(anoLancamento.equals("")) {
+                throw new StringVaziaException("O campo Ano de Lançamento não pode ser vazio");
             }
 
-            if(anoLancamento < 0) {
-                throw new NumeroNegativoException("Não deve ser inserida um ano menor do que 0");
+            if(Integer.parseInt(anoLancamento) < 0) {
+                throw new NumeroNegativoException("Não deve ser inserido um ano menor do que 0");
             }
             
             if(genero.equals("")){
-                throw new StringVaziaException("O campo nome não pode ser vazio");
+                throw new StringVaziaException("O campo Gênero não pode ser vazio");
+            }
+            
+            if(preco.equals("")) {
+                throw new StringVaziaException("O campo Preço não pode ser vazio");            
+            }
+            
+            if(Float.parseFloat(preco) < 0) {
+                throw new NumeroNegativoException("Não deve ser inserido um preço negativo");
             }
             
             if(descricao.equals("")){
-                throw new StringVaziaException("O campo nome não pode ser vazio");
+                throw new StringVaziaException("O campo Descrição não pode ser vazio");
             }
             
-
-            //fazer os outros throw
-            JOptionPane.showMessageDialog(this, jogoController.JogoCadastro(nome, anoLancamento, genero, preco, descricao));
-            tbl.addRow(new Object[]{1, nome, anoLancamento, genero, df.format(preco), descricao});
-        }  catch (StringVaziaException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(null, jogoController.JogoCadastro(nome, Integer.parseInt(anoLancamento), genero, Float.parseFloat(preco), descricao));
+            tbl.addRow(new Object[]{jogoController.jogoGetCodigoAtual(), nome, Integer.parseInt(anoLancamento), genero, df.format(Float.parseFloat(preco)), descricao});
+        } catch (StringVaziaException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "O campo Lançamento deve ser numérico");
+            JOptionPane.showMessageDialog(null, "Os campo Lançamento e Preço devem ser numéricos");
         } catch (NumeroNegativoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnCadastroActionPerformed
 

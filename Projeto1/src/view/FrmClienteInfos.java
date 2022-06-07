@@ -13,7 +13,7 @@ import static view.FrmLanding.clienteController;
  * @author aluno
  */
 public class FrmClienteInfos extends javax.swing.JFrame {
-    private static FrmClienteInfos clienteInfosForm = null;
+    private static FrmClienteInfos clienteInfoForm = null;
 
     /**
      * Creates new form FrmClienteInfos
@@ -23,10 +23,10 @@ public class FrmClienteInfos extends javax.swing.JFrame {
     }
     
     public static FrmClienteInfos getInstancia(){
-        if(clienteInfosForm == null){
-            clienteInfosForm = new FrmClienteInfos();
+        if(clienteInfoForm == null){
+            clienteInfoForm = new FrmClienteInfos();
         }
-        return clienteInfosForm;
+        return clienteInfoForm;
     }
 
     /**
@@ -40,50 +40,50 @@ public class FrmClienteInfos extends javax.swing.JFrame {
 
         btnMaisVelho = new javax.swing.JButton();
         btnMaisJovem = new javax.swing.JButton();
-        btnMaior60 = new javax.swing.JButton();
-        btnMenor18 = new javax.swing.JButton();
-        btnMedia = new javax.swing.JButton();
+        btnClientesAcima60 = new javax.swing.JButton();
+        btnClientesMenoresIdade = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnMediaIdades = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnMaisVelho.setText("Mais velho");
+        btnMaisVelho.setText("Cliente mais velho");
         btnMaisVelho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMaisVelhoActionPerformed(evt);
             }
         });
 
-        btnMaisJovem.setText("Mais jovem");
+        btnMaisJovem.setText("Cliente mais novo");
         btnMaisJovem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMaisJovemActionPerformed(evt);
             }
         });
 
-        btnMaior60.setText("Mais velho que 60 anos");
-        btnMaior60.addActionListener(new java.awt.event.ActionListener() {
+        btnClientesAcima60.setText("Clientes mais velhos que 60 anos");
+        btnClientesAcima60.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMaior60ActionPerformed(evt);
+                btnClientesAcima60ActionPerformed(evt);
             }
         });
 
-        btnMenor18.setText("Mais jovens que 18 anos");
-        btnMenor18.addActionListener(new java.awt.event.ActionListener() {
+        btnClientesMenoresIdade.setText("Clientes menores de idade");
+        btnClientesMenoresIdade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenor18ActionPerformed(evt);
-            }
-        });
-
-        btnMedia.setText("Média de idades");
-        btnMedia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMediaActionPerformed(evt);
+                btnClientesMenoresIdadeActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Informações sobre Clientes");
+
+        btnMediaIdades.setText("Idade média dos clientes");
+        btnMediaIdades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMediaIdadesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,13 +92,13 @@ public class FrmClienteInfos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnMenor18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnClientesMenoresIdade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnMaisJovem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMaior60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnClientesAcima60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnMaisVelho, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnMediaIdades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jLabel1)))
@@ -114,11 +114,11 @@ public class FrmClienteInfos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMaisJovem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMaior60)
+                .addComponent(btnClientesAcima60)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMenor18)
+                .addComponent(btnClientesMenoresIdade)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMedia)
+                .addComponent(btnMediaIdades)
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -126,24 +126,24 @@ public class FrmClienteInfos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaisVelhoActionPerformed
-        JOptionPane.showMessageDialog(this, clienteController.clienteMaisVelho());
+        JOptionPane.showMessageDialog(null, "Cliente cadastrado mais velho: \n" + clienteController.clienteMaisVelho());
     }//GEN-LAST:event_btnMaisVelhoActionPerformed
 
     private void btnMaisJovemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaisJovemActionPerformed
-        JOptionPane.showMessageDialog(this, clienteController.clienteMaisNovo());
+        JOptionPane.showMessageDialog(null, "Cliente cadastrado mais jovem: \n" + clienteController.clienteMaisNovo());
     }//GEN-LAST:event_btnMaisJovemActionPerformed
 
-    private void btnMaior60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaior60ActionPerformed
-        JOptionPane.showMessageDialog(this, clienteController.clienteMaisVelhos60());
-    }//GEN-LAST:event_btnMaior60ActionPerformed
+    private void btnClientesAcima60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesAcima60ActionPerformed
+        JOptionPane.showMessageDialog(null, "Número de clientes com idade maior que 60 anos: \n" + clienteController.clienteMaisVelhos60());
+    }//GEN-LAST:event_btnClientesAcima60ActionPerformed
 
-    private void btnMenor18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenor18ActionPerformed
-        JOptionPane.showMessageDialog(this, clienteController.clienteMaisNovos18());
-    }//GEN-LAST:event_btnMenor18ActionPerformed
+    private void btnClientesMenoresIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesMenoresIdadeActionPerformed
+        JOptionPane.showMessageDialog(null, "Número de clientes menores de idade: \n" + clienteController.clienteMaisNovos18());
+    }//GEN-LAST:event_btnClientesMenoresIdadeActionPerformed
 
-    private void btnMediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMediaActionPerformed
-        JOptionPane.showMessageDialog(this, clienteController.clienteMediaIdades());
-    }//GEN-LAST:event_btnMediaActionPerformed
+    private void btnMediaIdadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMediaIdadesActionPerformed
+        JOptionPane.showMessageDialog(null, "Média de idade dos clientes: \n" + clienteController.clienteMediaIdades());
+    }//GEN-LAST:event_btnMediaIdadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +171,9 @@ public class FrmClienteInfos extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FrmClienteInfos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -181,11 +184,11 @@ public class FrmClienteInfos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMaior60;
+    private javax.swing.JButton btnClientesAcima60;
+    private javax.swing.JButton btnClientesMenoresIdade;
     private javax.swing.JButton btnMaisJovem;
     private javax.swing.JButton btnMaisVelho;
-    private javax.swing.JButton btnMedia;
-    private javax.swing.JButton btnMenor18;
+    private javax.swing.JButton btnMediaIdades;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
