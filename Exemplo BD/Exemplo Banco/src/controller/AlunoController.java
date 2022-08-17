@@ -15,15 +15,14 @@ import model.dao.AlunoDAO;
  * @author aluno
  */
 public class AlunoController {
-    private ArrayList<Aluno> list;
+    AlunoDAO alDao;
 
     public AlunoController() {
-        list = new ArrayList<>();
+        alDao = new AlunoDAO();
     }
     
     public void cadastrar(int ra, String nome) throws SQLException {
         Aluno a = new Aluno(ra, nome);
-        AlunoDAO alDao = new AlunoDAO();
         alDao.inserirAluno(a);
     }
 }
