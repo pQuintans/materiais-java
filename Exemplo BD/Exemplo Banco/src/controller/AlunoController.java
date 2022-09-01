@@ -25,4 +25,13 @@ public class AlunoController {
         Aluno a = new Aluno(ra, nome);
         alDao.inserirAluno(a);
     }
+    
+    public void excluir(int ra) throws SQLException {
+        alDao.excluir(ra);
+    }
+    
+    public ArrayList<Aluno> buscaAlunos() throws SQLException {
+        ArrayList<Aluno> alunos = alDao.buscarAlunos();
+        return alunos;
+    }
 }
