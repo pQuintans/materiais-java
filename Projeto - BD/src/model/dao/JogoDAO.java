@@ -8,7 +8,10 @@ package model.dao;
 import connection.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import model.Jogo;
 
 /**
@@ -46,4 +49,55 @@ public class JogoDAO {
         stmt.close();
         con.close();        
     }
+
+    public ArrayList<Jogo> buscaJogos() throws SQLException {
+        ResultSet rs;
+        ArrayList<Jogo> lista = new ArrayList();
+
+        con = new Conexao().getConnection();
+
+        String sql = "SELECT * FROM jogos";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        rs = stmt.executeQuery();
+
+        while(rs.next()) {
+            int codigo = rs.getInt("codigo");
+            String nome = rs.getString("nome");
+            int anoLancamento = rs.getInt("ano_lancamento");
+            String genero = rs.getString("genero");
+            float preco = rs.getInt("preco");
+            String descricao = rs.getString("descricao");
+
+            Jogo jogo = new Jogo(codigo, nome, anoLancamento, genero, preco, descricao);
+            lista.add(jogo);
+        }
+
+        stmt.close();
+        con.close();
+        return lista;
+    }
+
+    public Jogo buscaJogo(int codigo) throws SQLException {
+        ResultSet rs;
+
+        con = new Conexao().getConnection();
+
+        String sql = "SELECT * FROM jogos WHERE codigo = ?";
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, codigo);
+        rs = stmt.executeQuery();
+
+        String nome = rs.getString("nome");
+        int anoLancamento = rs.getInt("ano_lancamento");
+        String genero = rs.getString("genero");
+        float preco = rs.getInt("preco");
+        String descricao = rs.getString("descricao");
+
+        Jogo jogo = new Jogo(codigo, nome, anoLancamento, genero, preco, descricao);
+
+        stmt.close();
+        con.close();
+        return jogo;
+    }
+
 }

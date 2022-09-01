@@ -46,73 +46,14 @@ public class JogoController {
         jogoDAO.delete(codigo);
     }
 
-    public String jogoBuscar(int busca){
+    public String jogoBuscar(int codigo) throws SQLException{
         String resposta = "";
-
-        for(Jogo c: jogos) {
-            if(c.getDescricao().toUpperCase().startsWith(busca)){
-                resposta = resposta.concat(c.getNome() + " - " + c.getDescricao() + "\n");
-            }
-        }
-
-        if(resposta.equals("")) {
-            resposta = "Nenhum jogo encontrado";
-        }
-
-        return resposta;
+        Jogo jogo = jogoDAO.buscaJogo(codigo);
+        return jogo.getNome() + " - " + jogo.getDescricao() + "\n";
     }
 
-    public String jogoMaisCaro(){
-        float maiorPreco = 0;
-        String resposta = "";
-
-        for(Jogo j: jogos){
-            if(j.getPreco() > maiorPreco){
-                maiorPreco = j.getPreco();
-                resposta = j.getNome() + " - " +  Float.toString(j.getPreco()) + "\n";
-            } else if (j.getPreco() == maiorPreco) {
-                resposta = resposta.concat(j.getNome() + " - " +  Float.toString(j.getPreco()) + "\n");
-            }
-        }
-
-        return resposta;
-    }
-
-    public String jogoMaisBarato(){
-        float menorPreco = -1;
-        String resposta = "";
-
-        for(Jogo j: jogos){
-            if(j.getPreco() < menorPreco || menorPreco == -1){
-                menorPreco = j.getPreco();
-                resposta = j.getNome() + " - " +  Float.toString(j.getPreco()) + "\n";
-            } else if (j.getPreco() == menorPreco) {
-                resposta = resposta.concat(j.getNome() + " - " +  Float.toString(j.getPreco()) + "\n");
-            }
-        }
-
-        return resposta;
-    }
-
-    public float jogoMediaPrecos(){
-        float idadeTotal = 0;
-
-        for (Jogo j: jogos){
-            idadeTotal += j.getPreco();
-        }
-
-        return (float) idadeTotal/jogos.size();
-    }
-
-    public int jogoQuantidadeAcimaMediaPreco(){
-        float media = jogoMediaPrecos();
-        int jogosAcimaMedia = 0;
-        for (Jogo j: jogos) {
-            if(j.getPreco() > media) {
-                jogosAcimaMedia++;
-            }
-        }
-
-        return jogosAcimaMedia;
+    public ArrayList<Jogo> jogoBuscarTodos() throws SQLException {
+        ArrayList<Jogo> jogos = jogoDAO.buscaJogos();
+        return jogos;
     }
 }

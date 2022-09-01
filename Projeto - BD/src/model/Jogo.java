@@ -28,6 +28,19 @@ public class Jogo {
         this.preco = preco;
         this.descricao = descricao;
     }
+
+    public Jogo(int codigo, String nome, int anoLancamento, String genero, float preco, String descricao) {
+        if(codigo > numeroJogos) {
+            numeroJogos = codigo;
+        }
+
+        this.codigo = codigo;
+        this.nome = nome;
+        this.anoLancamento = anoLancamento;
+        this.genero = genero;
+        this.preco = preco;
+        this.descricao = descricao;
+    }
     
     public static int getNumeroJogos(){
         return numeroJogos;

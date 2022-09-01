@@ -7,6 +7,9 @@ package view;
 
 import javax.swing.JOptionPane;
 import model.Excepetions.StringVaziaException;
+
+import java.sql.SQLException;
+
 import static view.FrmLanding.jogoController;
 
 /**
@@ -94,12 +97,14 @@ public class FrmBuscaJogo extends javax.swing.JFrame {
                 throw new StringVaziaException("O campo de busca não pode ser vazio");
             } 
             
-            String resposta = jogoController.jogoBuscar( Integer.parseInt(busca));
+            String resposta = jogoController.jogoBuscar(Integer.parseInt(busca));
 
             JOptionPane.showMessageDialog(null, "Jogo encontrado: " + resposta);
         } catch (StringVaziaException e) {
-            
             JOptionPane.showMessageDialog(null, e.getMessage());
+        }  catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível encontrar o jogo");
+            System.out.println("Erro ao buscar jogo" + e.toString());
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
 

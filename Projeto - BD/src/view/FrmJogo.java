@@ -7,11 +7,14 @@ package view;
 
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Excepetions.DadoNaoEncontrado;
 import model.Excepetions.NumeroNegativoException;
 import model.Excepetions.StringVaziaException;
+import model.Jogo;
+
 import static view.FrmLanding.jogoController;
 
 /**
@@ -36,6 +39,17 @@ public class FrmJogo extends javax.swing.JFrame {
         tbl.addColumn("Descrição");
         tbl.setRowCount(0);
         tblJogos.setModel(tbl);
+
+        try {
+            ArrayList<Jogo> jogos = jogoController.jogoBuscarTodos();
+
+            for(Jogo j: jogos) {
+                tbl.addRow(new Object[]{j.getCodigo(), j.getNome(), j.getAnoLancamento(), j.getGenero(), df.format(j.getPreco()), j.getDescricao()});
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível excluir o jogo");
+            System.out.println("Erro ao excluir jogo" + ex.toString());
+        }
     }
     
     public static FrmJogo getInstancia(){
