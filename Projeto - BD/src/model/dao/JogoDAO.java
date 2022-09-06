@@ -77,27 +77,33 @@ public class JogoDAO {
         return lista;
     }
 
-    public Jogo buscaJogo(int codigo) throws SQLException {
+    public ArrayList<Jogo> buscaJogo(String nome) throws SQLException {
         ResultSet rs;
+        ArrayList<Jogo> lista = new ArrayList();
 
         con = new Conexao().getConnection();
 
-        String sql = "SELECT * FROM jogos WHERE codigo = ?";
+        String sql = "SELECT * FROM jogos WHERE nome LIKE ?";
         PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setInt(1, codigo);
+        stmt.setString(1, "%" + nome + "%");
         rs = stmt.executeQuery();
 
-        String nome = rs.getString("nome");
-        int anoLancamento = rs.getInt("ano_lancamento");
-        String genero = rs.getString("genero");
-        float preco = rs.getInt("preco");
-        String descricao = rs.getString("descricao");
+        while(rs.next()) {
+            int codigo = rs.getInt("codigo");
+            int anoLancamento = rs.getInt("ano_lancamento");
+            String genero = rs.getString("genero");
+            float preco = rs.getInt("preco");
+            String descricao = rs.getString("descricao");
+            nome = rs.getString("nome");
 
-        Jogo jogo = new Jogo(codigo, nome, anoLancamento, genero, preco, descricao);
+            Jogo jogo = new Jogo(codigo, nome, anoLancamento, genero, preco, descricao);
+            lista.add(jogo);
+        }
+
 
         stmt.close();
         con.close();
-        return jogo;
+        return lista;
     }
 
 }

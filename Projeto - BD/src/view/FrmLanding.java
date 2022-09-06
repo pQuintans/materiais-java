@@ -32,20 +32,12 @@ public class FrmLanding extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnAbrirBuscaJogos = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("CaixoteStore");
-
-        btnAbrirBuscaJogos.setText("Buscar jogos");
-        btnAbrirBuscaJogos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirBuscaJogosActionPerformed(evt);
-            }
-        });
 
         jButton1.setText("Gerenciar Jogos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -65,9 +57,7 @@ public class FrmLanding extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAbrirBuscaJogos, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(98, 98, 98))
         );
         layout.setVerticalGroup(
@@ -77,18 +67,11 @@ public class FrmLanding extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAbrirBuscaJogos)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAbrirBuscaJogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirBuscaJogosActionPerformed
-        FrmBuscaJogo buscaJogoForm = FrmBuscaJogo.getInstancia();
-        buscaJogoForm.setVisible(true);
-    }//GEN-LAST:event_btnAbrirBuscaJogosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         FrmJogo jogoForm = FrmJogo.getInstancia();
@@ -131,7 +114,6 @@ public class FrmLanding extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbrirBuscaJogos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

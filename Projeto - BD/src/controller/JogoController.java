@@ -46,10 +46,9 @@ public class JogoController {
         jogoDAO.delete(codigo);
     }
 
-    public String jogoBuscar(int codigo) throws SQLException{
-        String resposta = "";
-        Jogo jogo = jogoDAO.buscaJogo(codigo);
-        return jogo.getNome() + " - " + jogo.getDescricao() + "\n";
+    public ArrayList<Jogo> jogoBuscar(String nome) throws SQLException{
+        ArrayList<Jogo> jogos = jogoDAO.buscaJogo(nome);
+        return jogos;
     }
 
     public ArrayList<Jogo> jogoBuscarTodos() throws SQLException {
